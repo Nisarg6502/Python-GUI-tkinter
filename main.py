@@ -1,5 +1,7 @@
+from doctest import master
+from textwrap import fill
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import N, messagebox
 from turtle import width
 from PIL import ImageTk, Image
 
@@ -82,12 +84,31 @@ exit_app.pack(pady=10)
 # Frame 2
 f2 = tk.Frame(master=window, height=40, bg="#222228", width=100)
 
+# submainframe
+f2_main = tk.Frame(master=f2, bg="#2f2f37")
+
+# left submainframe
+f2_sub_left = tk.Frame(master=f2_main, width=320, bg="#2f2f37")
+f2l_1 = tk.Frame(master=f2_sub_left, bg="#464652", height=100, width=320)
+
+f2l_2 = tk.Frame(master=f2_sub_left, bg="#2f2f37", width=320)
+
+
+f2l_1.pack(fill=tk.X, side=tk.TOP)
+f2l_2.pack(fill=tk.BOTH, side=tk.TOP, expand=True)
+
+f2_sub_right = tk.Frame(master=f2_main, bg="orange")
+
+
+f2_sub_left.pack(side=tk.LEFT, fill=tk.BOTH, padx=20, pady=20, anchor=N)
+f2_sub_right.pack(side=tk.RIGHT)
+f2_main.pack(fill=tk.BOTH, pady=20, padx=20, expand=True)
 # Frame 3
-f3 = tk.Frame(master=window, height=40, bg="#222228", width=100)
+# f3 = tk.Frame(master=window, height=40, bg="#222228", width=100)
 
 f1.pack(fill=tk.Y, side=tk.LEFT)
 f2.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
-f3.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
+# f3.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
 
 window.geometry('800x500')
 
