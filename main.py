@@ -1,3 +1,4 @@
+from cgitb import text
 from doctest import master
 from re import S
 from textwrap import fill
@@ -7,6 +8,7 @@ from tkinter import font
 from turtle import color, width
 from PIL import ImageTk, Image
 from click import command
+# from markupsafe import te
 
 window = tk.Tk()
 
@@ -167,19 +169,50 @@ f2l_2.pack(fill=tk.BOTH, side=tk.TOP, expand=True, anchor=N)
 f2_sub_left.pack(side=tk.LEFT, fill=tk.BOTH, padx=20, pady=20, anchor=N)
 
 
-# # right submainframe
-# f2_sub_right = tk.Frame(master=f2_main, bg="orange")
-# f2r = tk.Frame(master=f2_sub_right, bg="orange")
-# lang_menu = tk.StringVar()
-# lang_menu.set("Select Language")
+# right submainframe
+f2_sub_right = tk.Frame(master=f2_main, bg="orange")
+f2r = tk.Frame(master=f2_sub_right, bg="orange")
 
+f2r_1 = tk.Frame(master=f2r, bg="orange")
+f2r1_l = tk.Label(master=f2r_1, text="Language for App",
+                  fg="white", bg="orange")
+f2r1_l.pack(padx=25, pady=10)
+f2r_1.pack(side=tk.TOP, anchor=W)
+
+f2r_2 = tk.Frame(master=f2r, bg="orange")
+lang_options = ["English", "Hindi", "Marathi", "Kannada", "German"]
+lang_menu = tk.StringVar()
+lang_menu.set("Select Language")
+drop_lang = tk.OptionMenu(f2r_2, lang_menu, *lang_options)
+drop_lang.pack()
+f2r_2.pack(side=tk.TOP)
+
+f2space = tk.Frame(master=f2r, bg="orange")
+f2space.pack(pady=10)
+
+f2r_3 = tk.Frame(master=f2r, bg="orange")
+f2r2_l = tk.Label(master=f2r_3, text="Doctor Type", bg="orange", fg="white")
+f2r2_l.pack(padx=29, pady=10)
+f2r_3.pack(side=tk.TOP, anchor=W)
+
+f2r_4 = tk.Frame(master=f2r, bg="orange")
+doc_options = ["Cardiologist", "Dermatologist",
+               "Neurologist", "Ob/GYN", "Opthalmologist", "Oncologist", "Pediatrician"]
+doc_menu = tk.StringVar()
+doc_menu.set("Select Doctor")
+drop_doc = tk.OptionMenu(f2r_4, doc_menu, *doc_options)
+drop_doc.pack()
+f2r_4.pack()
+
+f2space_2 = tk.Frame(master=f2r, bg="orange")
+f2space_2.pack(pady=10)
+
+f2r.pack(fill=tk.BOTH, pady=20)
 f2_sub_right.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
 f2_main.pack(fill=tk.BOTH, pady=20, padx=20, expand=True)
-
 
 f1.pack(fill=tk.Y, side=tk.LEFT)
 f2.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
 
-window.geometry('800x500')
-
+window.geometry('850x500')
 window.mainloop()
