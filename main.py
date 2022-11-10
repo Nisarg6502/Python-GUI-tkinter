@@ -8,15 +8,19 @@ from tkinter import font
 from turtle import color, width
 from PIL import ImageTk, Image
 from click import command
-# from markupsafe import te
+from tkcalendar import Calendar
 
 window = tk.Tk()
 
 # functions
 
 
-def submit():
+def Login():
     messagebox.showinfo("Form Outcome", "Logged In!")
+
+
+def Submit():
+    messagebox.showinfo("Data Submitted successfully. Appointment scheduled")
 
 
 def close_app():
@@ -65,7 +69,7 @@ sub_f1.pack(pady=70)
 
 # subframe f1.3
 login = tk.Button(master=f1, fg="white",
-                  text="Submit", width=10, background="#197af7", bd=0, relief=tk.GROOVE, highlightthickness=0, command=submit)
+                  text="Submit", width=10, background="#197af7", bd=0, relief=tk.GROOVE, highlightthickness=0, command=Login)
 login.pack()
 
 exit_app = tk.Button(master=f1, bg="red", fg="white",
@@ -170,16 +174,16 @@ f2_sub_left.pack(side=tk.LEFT, fill=tk.BOTH, padx=20, pady=20, anchor=N)
 
 
 # right submainframe
-f2_sub_right = tk.Frame(master=f2_main, bg="orange")
-f2r = tk.Frame(master=f2_sub_right, bg="orange")
+f2_sub_right = tk.Frame(master=f2_main, bg="#2f2f37")
+f2r = tk.Frame(master=f2_sub_right, bg="#2f2f37")
 
-f2r_1 = tk.Frame(master=f2r, bg="orange")
+f2r_1 = tk.Frame(master=f2r, bg="#2f2f37")
 f2r1_l = tk.Label(master=f2r_1, text="Language for App",
-                  fg="white", bg="orange")
+                  fg="white", bg="#2f2f37")
 f2r1_l.pack(padx=25, pady=10)
 f2r_1.pack(side=tk.TOP, anchor=W)
 
-f2r_2 = tk.Frame(master=f2r, bg="orange")
+f2r_2 = tk.Frame(master=f2r, bg="#2f2f37")
 lang_options = ["English", "Hindi", "Marathi", "Kannada", "German"]
 lang_menu = tk.StringVar()
 lang_menu.set("Select Language")
@@ -187,15 +191,15 @@ drop_lang = tk.OptionMenu(f2r_2, lang_menu, *lang_options)
 drop_lang.pack()
 f2r_2.pack(side=tk.TOP)
 
-f2space = tk.Frame(master=f2r, bg="orange")
+f2space = tk.Frame(master=f2r, bg="#2f2f37")
 f2space.pack(pady=10)
 
-f2r_3 = tk.Frame(master=f2r, bg="orange")
-f2r2_l = tk.Label(master=f2r_3, text="Doctor Type", bg="orange", fg="white")
+f2r_3 = tk.Frame(master=f2r, bg="#2f2f37")
+f2r2_l = tk.Label(master=f2r_3, text="Doctor Type", bg="#2f2f37", fg="white")
 f2r2_l.pack(padx=29, pady=10)
 f2r_3.pack(side=tk.TOP, anchor=W)
 
-f2r_4 = tk.Frame(master=f2r, bg="orange")
+f2r_4 = tk.Frame(master=f2r, bg="#2f2f37")
 doc_options = ["Cardiologist", "Dermatologist",
                "Neurologist", "Ob/GYN", "Opthalmologist", "Oncologist", "Pediatrician"]
 doc_menu = tk.StringVar()
@@ -204,8 +208,35 @@ drop_doc = tk.OptionMenu(f2r_4, doc_menu, *doc_options)
 drop_doc.pack()
 f2r_4.pack()
 
-f2space_2 = tk.Frame(master=f2r, bg="orange")
+f2space_2 = tk.Frame(master=f2r, bg="#2f2f37")
 f2space_2.pack(pady=10)
+
+f2r_5 = tk.Frame(master=f2r, bg="#2f2f37")
+# Add Calendar
+cal = Calendar(f2r_5, selectmode='day',
+               year=2020, month=5,
+               day=22)
+cal.pack(pady=20)
+
+
+def grad_date():
+    date.config(text="Selected Date is: " + cal.get_date())
+
+
+# Add Button and Label
+get_date = tk.Button(f2r_5, text="Get Date",
+                     command=grad_date).pack(pady=20)
+
+date = tk.Label(f2r_5, text="Date: ")
+date.pack(pady=20)
+f2r_5.pack(side=tk.BOTTOM)
+
+f2r_6 = tk.Frame(master=f2r, bg="#2f2f37")
+Submit = tk.Button(master=f2r_6, fg="white",
+                   text="Submit", width=10, background="#197af7", bd=0, relief=tk.GROOVE, highlightthickness=0, command=Submit)
+Submit.pack()
+f2r_6.pack(side=tk.BOTTOM)
+
 
 f2r.pack(fill=tk.BOTH, pady=20)
 f2_sub_right.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
